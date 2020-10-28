@@ -22,9 +22,9 @@
 <!--    </bean>-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&amp;useSSL=true" />
-        <property name="username" value="test" />
-        <property name="password" value="test" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/learn?serverTimezone=UTC&amp;useSSL=false" />
+        <property name="username" value="root" />
+        <property name="password" value="Abcd1234" />
         <property name="initialSize" value="2" />
         <!-- 每建立一次物理连接后，都会很快执行该属性指定的sql。  所以该属性不能用来初始化表数据，因为每一个连接建立后都会执行该属性配置的sql -->
 <!--        <property name="connectionInitSqls">-->
