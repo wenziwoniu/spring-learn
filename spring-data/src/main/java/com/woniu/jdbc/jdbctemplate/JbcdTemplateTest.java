@@ -37,8 +37,8 @@ public class JbcdTemplateTest {
 
         JdbcTemplate jdbcTemplate = (JdbcTemplate) applicationContext.getBean("jdbcTemplate");
         System.out.println(Thread.currentThread().getName());
-        Integer count = jdbcTemplate.queryForObject("select count(*) from test", Integer.class);
-        Integer count2 = jdbcTemplate.queryForObject("select count(*) from test", Integer.class);
+        Integer count = jdbcTemplate.queryForObject("select count(*) from student", Integer.class);
+        Integer count2 = jdbcTemplate.queryForObject("select count(*) from student", Integer.class);
         System.out.println("count:" + count);
 
         System.out.println("druidDataSource：" + druidDataSource.toString());
