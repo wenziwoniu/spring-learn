@@ -11,6 +11,7 @@
     <modules>
         <module>spring-learn-base</module>
         <module>spring-data</module>
+        <module>spring-batch</module>
     </modules>
     <properties>
         <spring.version>4.3.27.RELEASE</spring.version>
