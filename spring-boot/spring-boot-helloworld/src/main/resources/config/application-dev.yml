@@ -1,0 +1,9 @@
+info:
+  name: spring-boot-helloworld-dev
+  contact: spring-boot-helloworld-dev
+
+server:
+  port: 8001
+  address: localhost
+  sessionTimeout: 30
+  contextPath: /boot-helloworld

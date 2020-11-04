@@ -1,0 +1,6 @@
+info:
+  name: spring-boot-helloworld-prod
+  contact: spring-boot-helloworld-prod
+
+server:
+  port: 8003

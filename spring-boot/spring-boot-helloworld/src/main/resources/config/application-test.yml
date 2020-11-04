@@ -1,0 +1,6 @@
+info:
+  name: spring-boot-helloworld-test
+  contact: spring-boot-helloworld-test
+
+server:
+  port: 8002
