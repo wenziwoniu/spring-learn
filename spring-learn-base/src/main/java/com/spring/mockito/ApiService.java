@@ -3,7 +3,7 @@ package com.spring.mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ApiService {
     @Autowired
     private TestApiService testApiService;

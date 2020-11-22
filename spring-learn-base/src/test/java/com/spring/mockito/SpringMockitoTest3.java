@@ -36,6 +36,8 @@ public class SpringMockitoTest3 {
     @Autowired
     private TestApiManager testAipManager;
 
+    // spy是对真实对象进行模拟，所以需要使用@Autowired注入真实对象
+    // 如果使用@Mock 则直接会实例化一个Mock对象
     @Spy
     @Autowired
     private TestApiDao testApiDao;
