@@ -5,4 +5,10 @@
 
     <bean id="springBeanTest" class="com.woniu.learn.SpringBeanTest" />
 
+    <bean id="apiService" class="com.spring.mockito.ApiService" />
+    <bean id="testApiService" class="com.spring.mockito.TestApiService" />
+
+    <bean id="testApiDao" class="com.spring.mockito.TestApiDao" />
+    <bean id="testApiManager" class="com.spring.mockito.TestApiManager" />
+
 </beans>
