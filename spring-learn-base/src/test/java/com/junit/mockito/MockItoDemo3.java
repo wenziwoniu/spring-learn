@@ -11,9 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.List;
-
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 /**
  * MockIto Demo
@@ -21,25 +19,38 @@ import static org.mockito.Mockito.*;
  * 如果使用其它jar里的， 注解的对象需要自己进行初始化操作
  */
 @RunWith(MockitoJUnitRunner.class)
-public class MockItoDemo2 {
+public class MockItoDemo3 {
 
+    /** 被mock的其它对象，可以被设置到该对象中 */
     @InjectMocks
-    private ApiService apiService;
+    private BaseMockService baseMockService;
 
     @Spy
-    private TestApiService testApiService;
+    @InjectMocks
+    private SchoolMockService schoolMockService;
+
+    @Spy
+    private ClassesMockService classesMockService;
 
     @Before
     public void setUp() {
-        System.out.println("a");
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void mockItoDemo() {
 
-        when(testApiService.connect()).thenReturn("hello mockito");
-        System.out.println(apiService.test());
+        when(schoolMockService.schoolServiceWithMock()).thenReturn("school mock");
+        baseMockService.baseService();
+
+    }
+
+    @Test
+    public void mockItoDemo2() {
+
+        when(classesMockService.getClassCount()).thenReturn("classcount mock");
+        baseMockService.getClassName();
+        baseMockService.getClassCount();
 
     }
 

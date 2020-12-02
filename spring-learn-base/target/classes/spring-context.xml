@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springBeanTest" class="com.woniu.learn.SpringBeanTest" />
+
+    <bean id="apiService" class="com.spring.mockito.ApiService" />
+    <bean id="testApiService" class="com.spring.mockito.TestApiService" />
+
+    <bean id="testApiDao" class="com.spring.mockito.TestApiDao" />
+    <bean id="testApiManager" class="com.spring.mockito.TestApiManager" />
+
+</beans>

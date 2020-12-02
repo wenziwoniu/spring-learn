@@ -1,0 +1,13 @@
+info:
+  name: spring-boot-helloworld-default
+  contact: spring-boot-helloworld-default
+
+#web项目的端口号
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-boot-helloworld
+  profiles:
+    active: dev

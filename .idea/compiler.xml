@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-batch" />
-        <module name="spring-boot-batch" />
         <module name="spring-boot-helloworld" />
-        <module name="spring-data" />
-        <module name="spring-entity" />
         <module name="spring-learn-base" />
+        <module name="spring-data" />
+        <module name="spring-boot-batch" />
+        <module name="spring-entity" />
       </profile>
     </annotationProcessing>
   </component>
