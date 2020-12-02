@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -22,58 +23,57 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @ContextConfiguration(locations = {"classpath:spring-context.xml"})
 public class SpringMockitoTest3 {
 
+    // 如果仅仅使用@Autowired注解，则该字段是正常的spring bean， 该bean里使用@Autowired注入的字段也是正常的spring bean
+    // 如果仅仅使用@InjectMocks 则该字段是被mock生成的对象, 但不能对其方法进行Mock
+    // @InjectMocks不可以和@Mock一起使用  和@Spy一起使用时，虽然可以mock返回的结果，但被mock的那个方法会被真实调用
+
     @Autowired
-    @InjectMocks
+    @Spy
     private ApiService apiService;
-
-    @Spy
-    @Autowired
-    @InjectMocks
-    private TestApiService mockTestApiService;
-
-//    @Mock
-    @Spy
-    @Autowired
-    private TestApiManager testAipManager;
-
-    // spy是对真实对象进行模拟，所以需要使用@Autowired注入真实对象
-    // 如果使用@Mock 则直接会实例化一个Mock对象
-    @Spy
-    @Autowired
-    private TestApiDao testApiDao;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-//        ReflectionTestUtils.setField(AopTargetUtils.getTarget(apiService), "testApiService", mockTestApiService);
     }
 
-    @After
-    public void clearMocks() throws Exception {
-//        ReflectionTestUtils.setField(AopTargetUtils.getTarget(apiService), "testApiService", testApiService);
+    // 如果apiService仅仅使用@Mock注解，则生成的是被Mock成的对象，该对象里面的字段值为null
+//    @Test
+    public void testOnlyMock() {
+
+        when(apiService.apiMethod()).thenReturn("mock result");
+        System.out.println(apiService.apiMethod());
+
+
     }
 
-    /**
-     * mockTestApiService进行了spy注解 并对connect方法进行的模拟
-     * 结果：connect方法按照模拟结果进行了返回，mockTestApiService没有被模拟的方法按照实际代码执行
-     */
+    // 如果apiService仅仅使用@Spy注解，则生成的是被Mock成的对象，该对象里面的字段值为null
     @Test
-    public void testTestApiService() {
+    public void testOnlySpy() {
 
-        when(mockTestApiService.connect()).thenReturn("testApiService");
-        System.out.println(apiService.test());
+//        when(apiService.apiMethodWithSpy()).thenReturn("mock result");
+        doReturn("mock result").when(apiService).apiMethodWithSpy();
+        System.out.println(apiService.apiMethod());
+        System.out.println(apiService.apiMethodWithSpy());
 
     }
 
-    /**
-     *
-     */
+    // 如果apiService使用@Autowired和@Mock注解，则生成的是被Mock成的对象，该对象里面的字段值为null，效果和仅仅使用@Mock相同
     @Test
-    public void testTestApiDao() {
+    public void testWithAutowiredAndMock() {
 
-//        when(testAipManager.aipTest()).thenReturn("aichenzhiqing");
-        when(testApiDao.getStuentNameById(anyInt())).thenReturn("chenzhiqing");
-        System.out.println(apiService.getNameById(1));
+        when(apiService.apiMethod()).thenReturn("mock result");
+        System.out.println(apiService.apiMethod());
+        System.out.println(apiService.apiMethodWithSpy());
+
+    }
+
+    // 如果apiService使用@Autowired和@Spy注解，则生成的是Mock后的Spring的对象，该对象里面的字段值为spring注入的真实值
+    @Test
+    public void testWithAutowiredAndSpy() {
+
+        doReturn("mock result").when(apiService).apiMethodWithSpy();
+        System.out.println(apiService.apiMethod());
+        System.out.println(apiService.apiMethodWithSpy());
 
     }
 

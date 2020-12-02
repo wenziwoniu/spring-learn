@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,15 +25,20 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @ContextConfiguration(locations = {"classpath:spring-context.xml"})
 public class SpringMockitoTest2 {
 
+    // apiService是spring 实例化的对象 对于testApiService字段来说，如果没有使用@Mock， 则直接使用spring的对象进行注入，
+    // 否则使用Mock对象进行注入
     @Autowired
     @InjectMocks
     private ApiService apiService;
 
-    @Mock
-    private TestApiService mockTestApiService;
+//    @Mock
+//    private TestApiService mockTestApiService;
 
-    @Autowired
-    private TestApiService testApiService;
+    /**
+     * 无论是使用spy还是mock， 该对象里面的字段都不会被注入
+     */
+    @Spy
+    private TestApiService mockTestApiService;
 
     @Before
     public void setUp() throws Exception {
@@ -47,6 +53,14 @@ public class SpringMockitoTest2 {
 
     @Test
     public void should_success_when_testApiService() {
+
+        when(mockTestApiService.connect()).thenReturn("ok");
+        String result = apiService.test();
+        Assert.assertEquals("oktest", result);
+    }
+
+    @Test
+    public void testWithSpy() {
 
         when(mockTestApiService.connect()).thenReturn("ok");
         String result = apiService.test();

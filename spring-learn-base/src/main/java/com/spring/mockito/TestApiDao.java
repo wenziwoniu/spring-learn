@@ -1,9 +1,13 @@
 package com.spring.mockito;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TestApiDao {
+
+    @Autowired
+    private OtherService otherService;
 
     public String getStuentNameById(long id) {
 
@@ -13,6 +17,11 @@ public class TestApiDao {
     public String getStuentAge() {
 
         return "age is " + 18;
+    }
+
+    public String getStuentName() {
+
+        return "age is " + "name";
     }
 
 }

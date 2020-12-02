@@ -1,12 +1,22 @@
 package com.spring.mockito;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TestApiManager {
 
+    @Autowired
+    private OtherService otherService;
+
     public String aipTest() {
 
-        return "this testApiManager的真实方法";
+        return "aipTest";
+    }
+
+    public String aipTest2() {
+
+        otherService.otherServicePrint();
+        return "aipTest2";
     }
 }

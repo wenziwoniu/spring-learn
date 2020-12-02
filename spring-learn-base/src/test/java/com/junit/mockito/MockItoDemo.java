@@ -44,7 +44,8 @@ public class MockItoDemo {
         SchoolMockIto schoolMockIto = new SchoolMockIto();
         SchoolMockIto spySchool = spy(schoolMockIto);
         // printSchoolName方法会被mock 而printClassCount将调用真是方法
-        when(spySchool.printSchoolName()).thenReturn("安徽理工大学");
+//        when(spySchool.printSchoolName()).thenReturn("安徽理工大学");
+        doReturn("安徽理工大学").when(spySchool).printSchoolName();
         cityMockIto.printSchoolInfo(spySchool, new ClassMockIto());
 
     }

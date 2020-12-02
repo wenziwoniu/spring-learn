@@ -5,10 +5,17 @@
 
     <bean id="springBeanTest" class="com.woniu.learn.SpringBeanTest" />
 
-    <bean id="apiService" class="com.spring.mockito.ApiService" />
-    <bean id="testApiService" class="com.spring.mockito.TestApiService" />
+    <bean id="apiService" class="com.spring.mockito.ApiService">
+        <property name="serviceName" value="wang"/>
+    </bean>
+    <bean id="testApiService" class="com.spring.mockito.TestApiService">
+        <property name="name" value="testApiServiceName"/>
+    </bean>
 
     <bean id="testApiDao" class="com.spring.mockito.TestApiDao" />
     <bean id="testApiManager" class="com.spring.mockito.TestApiManager" />
+    <bean id="otherService" class="com.spring.mockito.OtherService">
+        <property name="name" value="otherService" />
+    </bean>
 
 </beans>
