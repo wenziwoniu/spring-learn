@@ -8,6 +8,7 @@ import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
@@ -16,7 +17,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 /**
  * 三级关系链的调用
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-context.xml"})
 public class SpringMockitoTest5 {
 
@@ -36,7 +37,7 @@ public class SpringMockitoTest5 {
      */
     @Autowired
     @InjectMocks
-//    @Spy
+    @Spy
     private TestApiService testApiService;
 
     @Spy
